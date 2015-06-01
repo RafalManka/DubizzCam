@@ -1,0 +1,57 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <!---->
+    <LinearLayout
+        android:id="@+id/cameraContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:background="@drawable/bg_stroke"
+        android:padding="1dp">
+        <!---->
+        <pl.rm.dubizzcam.util.SquareCameraPreview
+            android:id="@+id/camera"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+
+        <at.markushi.ui.CircleButton
+            android:id="@+id/btnToggleCam"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_camera_front_black_24dp"
+            app:cb_color="@android:color/white"
+            app:cb_pressedRingWidth="5dp" />
+
+        <at.markushi.ui.CircleButton
+            android:id="@+id/btnTakePic"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/ic_photo_camera_black_24dp"
+            app:cb_color="@android:color/white"
+            app:cb_pressedRingWidth="8dp" />
+
+        <at.markushi.ui.CircleButton
+            android:id="@+id/btnToggleFlash"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_photo_camera_black_24dp"
+            app:cb_color="@android:color/white"
+            app:cb_pressedRingWidth="5dp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

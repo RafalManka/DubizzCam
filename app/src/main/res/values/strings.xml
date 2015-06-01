@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">DubizzCam</string>
+
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="alert_camera_fail">Sorry, but you cannot use the camera now!</string>
+</resources>
