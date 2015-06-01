@@ -23,18 +23,18 @@ import pl.rm.dubizzcam.util.SquareCameraPreview;
  */
 public class DubizzleCameraFragment extends CameraFragment implements View.OnClickListener {
 
-    private CameraView cameraView;
-    private boolean useBackCamera;
+    private CameraView mCameraView;
+    private boolean useFrontCamera;
     private LinearLayout mPreviewContainer;
+    private CircleButton btnToggleFlash;
+    private CircleButton btnToggleCam;
+    private String mFlashMode;
 
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
-        View content = inflater.inflate(R.layout.fragment_camera, container, false);
-        cameraView = (CameraView) content.findViewById(R.id.camera);
-        setCameraView(cameraView);
-        return (content);
+        return inflater.inflate(R.layout.fragment_camera, container, false);
     }
 
     @Override
@@ -43,32 +43,38 @@ public class DubizzleCameraFragment extends CameraFragment implements View.OnCli
 
         CircleButton btnTakePic = (CircleButton) view.findViewById(R.id.btnTakePic);
         btnTakePic.setOnClickListener(this);
-        CircleButton btnToggleCam = (CircleButton) view.findViewById(R.id.btnToggleCam);
+        btnToggleCam = (CircleButton) view.findViewById(R.id.btnToggleCam);
         btnToggleCam.setOnClickListener(this);
+        btnToggleFlash = (CircleButton) view.findViewById(R.id.btnToggleFlash);
+        btnToggleFlash.setOnClickListener(this);
 
         mPreviewContainer = (LinearLayout) view.findViewById(R.id.cameraContainer);
+        mCameraView = (CameraView) view.findViewById(R.id.camera);
 
-        setHost(new MySimpleCameraHost(getActivity()));
+        CameraHost mySimpleCameraHost = new MySimpleCameraHost(getActivity());
+//        mCameraView.setHost(mySimpleCameraHost);
+        setHost(mySimpleCameraHost);
+        setCameraView(mCameraView);
     }
 
 
     private void addCameraView() {
         mPreviewContainer.removeAllViews();
-        cameraView = new SquareCameraPreview(getActivity());
-        cameraView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        cameraView.setHost(new MySimpleCameraHost(getActivity()));
-        setCameraView(cameraView);
-        mPreviewContainer.addView(cameraView);
+        mCameraView = new SquareCameraPreview(getActivity());
+        mCameraView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+
+        CameraHost mySimpleCameraHost = new MySimpleCameraHost(getActivity());
+        mCameraView.setHost(mySimpleCameraHost);
+//        setHost(mySimpleCameraHost);
+        setCameraView(mCameraView);
+
+        mPreviewContainer.addView(mCameraView);
     }
 
     private void toggleCam() {
         // do some change to the settings.
-        useBackCamera = !useBackCamera;
-        if (null != cameraView) {
-            cameraView.onPause();
-        }
+        useFrontCamera = !useFrontCamera;
         addCameraView();
-        cameraView.onResume();
     }
 
     private class MySimpleCameraHost extends SimpleCameraHost {
@@ -79,7 +85,7 @@ public class DubizzleCameraFragment extends CameraFragment implements View.OnCli
 
         @Override
         protected boolean useFrontFacingCamera() {
-            return !useBackCamera;
+            return useFrontCamera;
         }
 
         @Override
@@ -102,6 +108,8 @@ public class DubizzleCameraFragment extends CameraFragment implements View.OnCli
             // setPictureSize(parameters.getPictureSize().width, parameters.getPictureSize().width);
             return size;
         }
+
+//        takeP
     }
 
     @Override
@@ -113,6 +121,28 @@ public class DubizzleCameraFragment extends CameraFragment implements View.OnCli
             }
             case R.id.btnToggleCam: {
                 toggleCam();
+                btnToggleCam.setImageResource(useFrontCamera ? R.drawable.ic_camera_rear_black_24dp : R.drawable.ic_camera_front_black_24dp);
+                break;
+            }
+            case R.id.btnToggleFlash: {
+
+                /*FLASH_MODE_AUTO	Flash will be fired automatically when required.
+                String	FLASH_MODE_OFF	Flash will not be fired.
+                        String	FLASH_MODE_ON	Flash will always be fired during snapshot.
+                String	FLASH_MODE_RED_EYE	Flash will be fired in red-eye reduction mode.
+                String	FLASH_MODE_TORCH*/
+                String flashMode = getFlashMode();
+                if (flashMode.equals(Camera.Parameters.FLASH_MODE_AUTO)) {
+                    btnToggleFlash.setImageResource(R.drawable.ic_flash_on_black_24dp);
+                    mFlashMode = Camera.Parameters.FLASH_MODE_ON;
+                } else if (flashMode.equals(Camera.Parameters.FLASH_MODE_ON)) {
+                    btnToggleFlash.setImageResource(R.drawable.ic_flash_off_black_24dp);
+                    mFlashMode = Camera.Parameters.FLASH_MODE_OFF;
+                } else {
+                    btnToggleFlash.setImageResource(R.drawable.ic_flash_auto_black_24dp);
+                    mFlashMode = Camera.Parameters.FLASH_MODE_AUTO;
+                }
+
                 break;
             }
 
