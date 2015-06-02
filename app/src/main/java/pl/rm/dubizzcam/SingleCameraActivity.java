@@ -240,14 +240,6 @@ public class SingleCameraActivity extends Activity implements CameraHostProvider
         }
     }
 
-//    private void initCameraPreview() {
-////        if (firstResume) {
-//        restartCamera();
-////            firstResume = false;
-////        }
-//    }
-
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -496,12 +488,6 @@ public class SingleCameraActivity extends Activity implements CameraHostProvider
                 y = (bitmap.getHeight() - smallerSize) / 2;
             }
             Log.v(TAG, "smaller size = " + smallerSize + ", x = " + x + ", y = " + y);
-
-            /*if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                y = y + 70;
-            } else {
-                x = x + 70;
-            }*/
             Bitmap croppedBmp = Bitmap.createBitmap(bitmap, x, y, smallerSize,
                     smallerSize);
 
