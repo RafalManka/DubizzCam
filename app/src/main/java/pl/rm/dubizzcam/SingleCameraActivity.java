@@ -30,8 +30,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
-import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import at.markushi.ui.CircleButton;
 
@@ -344,7 +345,6 @@ public class SingleCameraActivity extends Activity implements CameraHostProvider
 
         public DubizzCameraHost(Context _ctxt) {
             super(_ctxt);
-
         }
 
         @Override
@@ -497,6 +497,11 @@ public class SingleCameraActivity extends Activity implements CameraHostProvider
             }
             Log.v(TAG, "smaller size = " + smallerSize + ", x = " + x + ", y = " + y);
 
+            /*if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                y = y + 70;
+            } else {
+                x = x + 70;
+            }*/
             Bitmap croppedBmp = Bitmap.createBitmap(bitmap, x, y, smallerSize,
                     smallerSize);
 
@@ -588,8 +593,8 @@ public class SingleCameraActivity extends Activity implements CameraHostProvider
         private String getImageName() {
             // Create a name for the saved image
             Date date = new Date();
-            DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(getApplicationContext());
-            String name = dateFormat.format(date);
+            String name = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).format(date);
+
             return "IMG_" + name + ".jpeg";
 
         }

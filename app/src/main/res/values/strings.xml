@@ -13,4 +13,6 @@
     <string name="problem_cropping_image">Problem while cropping image</string>
     <string name="alert_camera_not_availeable">Camera is not availeable</string>
     <string name="preview_is_not_ready_yet">Preview is not ready yet</string>
+    <string name="camera_switch">Switch between cameras</string>
+    <string name="flash">Flash</string>
 </resources>

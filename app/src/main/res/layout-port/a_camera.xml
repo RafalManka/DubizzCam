@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/imageBackground"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/black"
+    android:clickable="true">
+
+    <FrameLayout
+        android:id="@+id/camera_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/preview_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:alpha="0.8"
+            android:background="@android:color/black"
+            android:gravity="center"
+            android:weightSum="3">
+
+            <ImageView
+                android:id="@+id/toggleCamera"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:contentDescription="@string/camera_switch"
+                android:scaleType="centerInside"
+                tools:src="@drawable/ic_camera_front" />
+
+
+            <ImageView
+                android:id="@+id/flashIcon"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:contentDescription="@string/flash"
+                android:scaleType="centerInside"
+                tools:src="@drawable/ic_flash_auto" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <pl.rm.dubizzcam.SquareView
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+
+        <LinearLayout
+            android:id="@+id/miniatures_wraper"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:alpha="0.8"
+            android:background="@android:color/black"
+            android:gravity="bottom|center_horizontal"
+            android:orientation="horizontal"
+            android:paddingBottom="14dp">
+
+
+            <at.markushi.ui.CircleButton
+                android:id="@+id/btnCapture"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/ic_photo_camera_black_24dp"
+                app:cb_color="@android:color/white"
+                app:cb_pressedRingWidth="8dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>
