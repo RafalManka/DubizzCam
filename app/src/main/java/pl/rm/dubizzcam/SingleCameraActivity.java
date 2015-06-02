@@ -42,6 +42,7 @@ import at.markushi.ui.CircleButton;
 public class SingleCameraActivity extends Activity implements CameraHostProvider, View.OnClickListener {
 
     private static final String TAG = SingleCameraActivity.class.getSimpleName();
+    private static final String DCIM_FOLDER_NAME = "DubizzCam";
 
     private CameraFragment mCameraFragment;
     private DubizzCameraHost mCameraHost;
@@ -561,7 +562,7 @@ public class SingleCameraActivity extends Activity implements CameraHostProvider
             File filepath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
             // Create a new folder in SD Card
             File dir = new File(filepath.getAbsolutePath()
-                    + "/DubizzCam/");
+                    + File.separator+ DCIM_FOLDER_NAME +File.separator);
             if (dir.mkdirs()) {
                 Log.v(TAG, "directory created");
             } else {
