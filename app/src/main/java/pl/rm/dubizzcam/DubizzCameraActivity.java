@@ -39,9 +39,9 @@ import at.markushi.ui.CircleButton;
 /**
  * Created by rafalmanka on 6/2/15 for DubizzCam.
  */
-public class SingleCameraActivity extends Activity implements CameraHostProvider, View.OnClickListener {
+public class DubizzCameraActivity extends Activity implements CameraHostProvider, View.OnClickListener {
 
-    private static final String TAG = SingleCameraActivity.class.getSimpleName();
+    private static final String TAG = DubizzCameraActivity.class.getSimpleName();
     private static final String DCIM_FOLDER_NAME = "DubizzCam";
 
     private CameraFragment mCameraFragment;
