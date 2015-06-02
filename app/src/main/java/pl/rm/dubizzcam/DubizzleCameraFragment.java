@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -29,6 +30,7 @@ public class DubizzleCameraFragment extends CameraFragment implements View.OnCli
     private CircleButton btnToggleFlash;
     private CircleButton btnToggleCam;
     private String mFlashMode;
+    private MySimpleCameraHost mCameraHost;
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -48,33 +50,48 @@ public class DubizzleCameraFragment extends CameraFragment implements View.OnCli
         btnToggleFlash = (CircleButton) view.findViewById(R.id.btnToggleFlash);
         btnToggleFlash.setOnClickListener(this);
 
-        mPreviewContainer = (LinearLayout) view.findViewById(R.id.cameraContainer);
-        mCameraView = (CameraView) view.findViewById(R.id.camera);
-
-        CameraHost mySimpleCameraHost = new MySimpleCameraHost(getActivity());
-//        mCameraView.setHost(mySimpleCameraHost);
-        setHost(mySimpleCameraHost);
-        setCameraView(mCameraView);
+        addCameraView(view);
     }
 
 
-    private void addCameraView() {
-        mPreviewContainer.removeAllViews();
+    private void addCameraView(View v) {
+
+        FrameLayout frame = (FrameLayout) v.findViewById(R.id.cameraContainer);
+        frame.removeAllViews();
         mCameraView = new SquareCameraPreview(getActivity());
-        mCameraView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
-        CameraHost mySimpleCameraHost = new MySimpleCameraHost(getActivity());
-        mCameraView.setHost(mySimpleCameraHost);
-//        setHost(mySimpleCameraHost);
+        mCameraView.setLayoutParams(new FrameLayout.LayoutParams(300, ViewGroup.LayoutParams.MATCH_PARENT));
+        mCameraView.setHost(mCameraHost = new MySimpleCameraHost(getActivity()));
         setCameraView(mCameraView);
+        frame.addView(mCameraView);
 
-        mPreviewContainer.addView(mCameraView);
+
+//        mPreviewContainer = (LinearLayout) view.findViewById(R.id.cameraContainer);
+//        mCameraView = (CameraView) view.findViewById(R.id.camera);
+//
+//        CameraHost mySimpleCameraHost = new MySimpleCameraHost(getActivity());
+//        setHost(mySimpleCameraHost);
+//        setCameraView(mCameraView);
+//
+//        mPreviewContainer.removeAllViews();
+//        mCameraView = new SquareCameraPreview(getActivity());
+//        mCameraView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+//        mPreviewContainer.addView(mCameraView);
+//
+//        cameraHost = new MySimpleCameraHost(getActivity());
+//        setHost(mySimpleCameraHost);
+//        setCameraView(mCameraView);
+
     }
 
     private void toggleCam() {
         // do some change to the settings.
         useFrontCamera = !useFrontCamera;
-        addCameraView();
+        if (mCameraView != null) {
+            mCameraView.onPause();
+        }
+        addCameraView(getView());
+        mCameraView.onResume();
     }
 
     private class MySimpleCameraHost extends SimpleCameraHost {

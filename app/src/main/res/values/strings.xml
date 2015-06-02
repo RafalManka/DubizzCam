@@ -4,4 +4,13 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="alert_camera_fail">Sorry, but you cannot use the camera now!</string>
+    <string name="processing_image">Please wait, image processing</string>
+    <string name="please_wait">Please wait</string>
+    <string name="camera_not_availeable">Camera is not availeable</string>
+    <string name="error_camera_unknown">Camera not recognized</string>
+    <string name="error_no_camera_found">Camera not reported</string>
+    <string name="an_error_occured">An error has occured</string>
+    <string name="problem_cropping_image">Problem while cropping image</string>
+    <string name="alert_camera_not_availeable">Camera is not availeable</string>
+    <string name="preview_is_not_ready_yet">Preview is not ready yet</string>
 </resources>

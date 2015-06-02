@@ -13,7 +13,7 @@
         android:label="@string/app_name"
         android:theme="@android:style/Theme.NoTitleBar" >
         <activity
-            android:name=".CameraActivity"
+            android:name=".SingleCameraActivity"
             android:configChanges="keyboardHidden|screenSize"
             android:label="@string/app_name" >
             <intent-filter>

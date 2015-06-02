@@ -5,7 +5,7 @@
     android:orientation="horizontal">
 
     <!---->
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/cameraContainer"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -13,11 +13,11 @@
         android:background="@drawable/bg_stroke"
         android:padding="1dp">
         <!---->
-        <pl.rm.dubizzcam.util.SquareCameraPreview
+        <!--<pl.rm.dubizzcam.util.SquareCameraPreview
             android:id="@+id/camera"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
-    </LinearLayout>
+            android:layout_height="match_parent" />-->
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="0dp"

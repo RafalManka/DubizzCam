@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/imageBackground"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/black"
+    android:clickable="true">
+
+    <FrameLayout
+        android:id="@+id/outerCameraWrapper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/camera_fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:background="@android:color/black"
+            android:alpha="0.8"
+            android:id="@+id/preview_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center"
+            android:weightSum="3">
+
+            <ImageView
+                android:id="@+id/toggleCamera"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="centerInside"
+                tools:src="@drawable/ic_camera_front" />
+
+
+            <ImageView
+                android:id="@+id/flashIcon"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="centerInside"
+                tools:src="@drawable/ic_flash_auto" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_gravity="bottom"
+            android:alpha="0.8"
+            android:background="@android:color/black" />
+
+        <LinearLayout
+            android:id="@+id/miniatures_wraper"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_gravity="bottom"
+            android:gravity="bottom"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp">
+
+                <View
+                    android:id="@+id/folderIcon"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:scaleType="centerInside" />
+
+                <at.markushi.ui.CircleButton
+                    android:id="@+id/btnCapture"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/ic_photo_camera_black_24dp"
+                    app:cb_color="@android:color/white"
+                    app:cb_pressedRingWidth="8dp" />
+
+                <View
+                    android:id="@+id/goToAddItemWrapper"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:clickable="false"
+                    android:gravity="center" />
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+
+</FrameLayout>
